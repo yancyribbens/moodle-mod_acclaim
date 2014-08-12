@@ -5,24 +5,24 @@ this module template code.
 
 * Unzip the archive and read this file
 
-* Rename the acclaim/ folder to the name of your module (eg "acclaim").
+* Rename the Acclaim/ folder to the name of your module (eg "Acclaim").
   The module folder MUST be lower case and can't contain underscores. You should check the CVS contrib
   area at http://cvs.moodle.org/contrib/plugins/mod/ to make sure that
   your name is not already used by an other module. Registering the plugin
   name @ http://moodle.org/plugins will secure it for you.
 
 * Edit all the files in this directory and its subdirectories and change
-  all the instances of the string "acclaim" to your module name
-  (eg "acclaim"). If you are using Linux, you can use the following command
-  $ find . -type f -exec sed -i 's/acclaim/acclaim/g' {} \;
+  all the instances of the string "Acclaim" to your module name
+  (eg "Acclaim"). If you are using Linux, you can use the following command
+  $ find . -type f -exec sed -i 's/Acclaim/Acclaim/g' {} \;
   
   On a mac, use:
-  $ find . -type f -exec sed -i '' 's/acclaim/acclaim/g' {} \;
+  $ find . -type f -exec sed -i '' 's/Acclaim/Acclaim/g' {} \;
 
-* Rename the file lang/en/acclaim.php to lang/en/acclaim.php
-  where "acclaim" is the name of your module
+* Rename the file lang/en/Acclaim.php to lang/en/Acclaim.php
+  where "Acclaim" is the name of your module
 
-* Place the acclaim folder into the /mod folder of the moodle
+* Place the Acclaim folder into the /mod folder of the moodle
   directory.
 
 * Go to Settings > Site Administration > Development > XMLDB editor
@@ -36,7 +36,7 @@ this module template code.
   the module's tables successfully created
 
 * Go to Site Administration > Plugins > Activity modules > Manage activities
-  and you should find that this acclaim has been added to the list of
+  and you should find that this Acclaim has been added to the list of
   installed modules.
 
 * You may now proceed to run your own code in an attempt to develop

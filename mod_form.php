@@ -16,12 +16,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The main acclaim configuration form
+ * The main Acclaim configuration form
  *
  * It uses the standard core Moodle formslib. For more info about them, please
  * visit: http://docs.moodle.org/en/Development:lib/formslib.php
  *
- * @package    mod_acclaim
+ * @package    mod_Acclaim
  * @copyright  2011 Your Name
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 /**
  * Module instance settings form
  */
-class mod_acclaim_mod_form extends moodleform_mod {
+class mod_Acclaim_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
@@ -47,7 +47,7 @@ class mod_acclaim_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field
-        $mform->addElement('text', 'name', get_string('acclaimname', 'acclaim'), array('size'=>'64'));
+        $mform->addElement('text', 'name', get_string('Acclaimname', 'Acclaim'), array('size'=>'64'));
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
         } else {
@@ -55,18 +55,18 @@ class mod_acclaim_mod_form extends moodleform_mod {
         }
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'acclaimname', 'acclaim');
+        $mform->addHelpButton('name', 'Acclaimname', 'Acclaim');
 
         // Adding the standard "intro" and "introformat" fields
         $this->add_intro_editor();
 
         //-------------------------------------------------------------------------------
-        // Adding the rest of acclaim settings, spreeading all them into this fieldset
+        // Adding the rest of Acclaim settings, spreeading all them into this fieldset
         // or adding more fieldsets ('header' elements) if needed for better logic
-        $mform->addElement('static', 'label1', 'acclaimsetting1', 'Your acclaim fields go here. Replace me!');
+        $mform->addElement('static', 'label1', 'Acclaimsetting1', 'Your Acclaim fields go here. Replace me!');
 
-        $mform->addElement('header', 'acclaimfieldset', get_string('acclaimfieldset', 'acclaim'));
-        $mform->addElement('static', 'label2', 'acclaimsetting2', 'Your acclaim fields go here. Replace me!');
+        $mform->addElement('header', 'Acclaimfieldset', get_string('Acclaimfieldset', 'Acclaim'));
+        $mform->addElement('static', 'label2', 'Acclaimsetting2', 'Your Acclaim fields go here. Replace me!');
 
         //-------------------------------------------------------------------------------
         // add standard elements, common to all modules

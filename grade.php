@@ -17,7 +17,7 @@
 /**
  * Redirect the user to the appropriate submission related page
  *
- * @package   mod_acclaim
+ * @package   mod_Acclaim
  * @category  grade
  * @copyright 2011 Your Name
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
