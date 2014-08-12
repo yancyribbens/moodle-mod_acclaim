@@ -18,7 +18,7 @@
 /**
  * @see uninstall_plugin()
  *
- * @package    mod_widget
+ * @package    mod_acclaim
  * @copyright  2011 Your Name <your@email.adress>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,6 +26,6 @@
 /**
  * Custom uninstallation procedure
  */
-function xmldb_widget_uninstall() {
+function xmldb_acclaim_uninstall() {
     return true;
 }

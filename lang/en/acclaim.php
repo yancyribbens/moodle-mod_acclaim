@@ -17,24 +17,24 @@
 
 
 /**
- * English strings for widget
+ * English strings for acclaim
  *
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_widget
+ * @package    mod_acclaim
  * @copyright  2011 Your Name
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'widget';
-$string['modulenameplural'] = 'widgets';
-$string['modulename_help'] = 'Use the widget module for... | The widget module allows...';
-$string['widgetfieldset'] = 'Custom example fieldset';
-$string['widgetname'] = 'widget name';
-$string['widgetname_help'] = 'This is the content of the help tooltip associated with the widgetname field. Markdown syntax is supported.';
-$string['widget'] = 'widget';
-$string['pluginadministration'] = 'widget administration';
-$string['pluginname'] = 'widget';
+$string['modulename'] = 'acclaim';
+$string['modulenameplural'] = 'acclaims';
+$string['modulename_help'] = 'Use the acclaim module for... | The acclaim module allows...';
+$string['acclaimfieldset'] = 'Custom example fieldset';
+$string['acclaimname'] = 'acclaim name';
+$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
+$string['acclaim'] = 'acclaim';
+$string['pluginadministration'] = 'acclaim administration';
+$string['pluginname'] = 'acclaim';
