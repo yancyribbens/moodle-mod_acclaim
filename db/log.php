@@ -22,7 +22,7 @@
  * It is not really essential to know about it, but these logs were created as example
  * in the previous 1.9 NEWMODULE.
  *
- * @package    mod_newmodule
+ * @package    mod_widget
  * @copyright  2011 Your Name <your@email.adress>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -32,8 +32,8 @@ defined('MOODLE_INTERNAL') || die();
 global $DB;
 
 $logs = array(
-    array('module'=>'newmodule', 'action'=>'add', 'mtable'=>'newmodule', 'field'=>'name'),
-    array('module'=>'newmodule', 'action'=>'update', 'mtable'=>'newmodule', 'field'=>'name'),
-    array('module'=>'newmodule', 'action'=>'view', 'mtable'=>'newmodule', 'field'=>'name'),
-    array('module'=>'newmodule', 'action'=>'view all', 'mtable'=>'newmodule', 'field'=>'name')
+    array('module'=>'widget', 'action'=>'add', 'mtable'=>'widget', 'field'=>'name'),
+    array('module'=>'widget', 'action'=>'update', 'mtable'=>'widget', 'field'=>'name'),
+    array('module'=>'widget', 'action'=>'view', 'mtable'=>'widget', 'field'=>'name'),
+    array('module'=>'widget', 'action'=>'view all', 'mtable'=>'widget', 'field'=>'name')
 );
