@@ -1,6 +1,8 @@
 <?php
 $org_id="6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c";
 $url="https://jefferson-staging.herokuapp.com/api/v1/organizations/".$org_id."/badges";
+
+//pass token as argument so it's not in code base
 $username = $argv[1];
 $password = "";
 
