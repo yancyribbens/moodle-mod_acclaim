@@ -15,74 +15,87 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 /**
  * This is a one-line short description of the file
  *
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_Acclaim
- * @copyright  2011 Your Name
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_acclaim
+ * @copyright 2010 Your Name
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/// Replace Acclaim with the name of your module and remove this line
+/// Replace acclaim with the name of your module and remove this line
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 
 $id = required_param('id', PARAM_INT);   // course
 
-$course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
+if (! $course = $DB->get_record('course', array('id' => $id))) {
+    error('Course ID is incorrect');
+}
 
 require_course_login($course);
 
-add_to_log($course->id, 'Acclaim', 'view all', 'index.php?id='.$course->id, '');
+add_to_log($course->id, 'acclaim', 'view all', "index.php?id=$course->id", '');
 
-$coursecontext = context_course::instance($course->id);
+/// Print the header
 
-$PAGE->set_url('/mod/Acclaim/index.php', array('id' => $id));
-$PAGE->set_title(format_string($course->fullname));
-$PAGE->set_heading(format_string($course->fullname));
-$PAGE->set_context($coursecontext);
+$PAGE->set_url('/mod/acclaim/view.php', array('id' => $id));
+$PAGE->set_title($course->fullname);
+$PAGE->set_heading($course->shortname);
 
 echo $OUTPUT->header();
 
-if (! $Acclaims = get_all_instances_in_course('Acclaim', $course)) {
-    notice(get_string('noAcclaims', 'Acclaim'), new moodle_url('/course/view.php', array('id' => $course->id)));
+/// Get all the appropriate data
+
+if (! $acclaims = get_all_instances_in_course('acclaim', $course)) {
+    echo $OUTPUT->heading(get_string('noacclaims', 'acclaim'), 2);
+    echo $OUTPUT->continue_button("view.php?id=$course->id");
+    echo $OUTPUT->footer();
+    die();
 }
 
-$table = new html_table();
+/// Print the list of instances (your module will probably extend this)
+
+$timenow  = time();
+$strname  = get_string('name');
+$strweek  = get_string('week');
+$strtopic = get_string('topic');
+
 if ($course->format == 'weeks') {
-    $table->head  = array(get_string('week'), get_string('name'));
-    $table->align = array('center', 'left');
+    $table->head  = array ($strweek, $strname);
+    $table->align = array ('center', 'left');
 } else if ($course->format == 'topics') {
-    $table->head  = array(get_string('topic'), get_string('name'));
-    $table->align = array('center', 'left', 'left', 'left');
+    $table->head  = array ($strtopic, $strname);
+    $table->align = array ('center', 'left', 'left', 'left');
 } else {
-    $table->head  = array(get_string('name'));
-    $table->align = array('left', 'left', 'left');
+    $table->head  = array ($strname);
+    $table->align = array ('left', 'left', 'left');
 }
 
-foreach ($Acclaims as $Acclaim) {
-    if (!$Acclaim->visible) {
-        $link = html_writer::link(
-            new moodle_url('/mod/Acclaim.php', array('id' => $Acclaim->coursemodule)),
-            format_string($Acclaim->name, true),
-            array('class' => 'dimmed'));
+foreach ($acclaims as $acclaim) {
+    if (!$acclaim->visible) {
+        //Show dimmed if the mod is hidden
+        $link = '<a class="dimmed" href="view.php?id='.$acclaim->coursemodule.'">'.format_string($acclaim->name).'</a>';
     } else {
-        $link = html_writer::link(
-            new moodle_url('/mod/Acclaim.php', array('id' => $Acclaim->coursemodule)),
-            format_string($Acclaim->name, true));
+        //Show normal if the mod is visible
+        $link = '<a href="view.php?id='.$acclaim->coursemodule.'">'.format_string($acclaim->name).'</a>';
     }
 
     if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array($Acclaim->section, $link);
+        $table->data[] = array ($acclaim->section, $link);
     } else {
-        $table->data[] = array($link);
+        $table->data[] = array ($link);
     }
 }
 
-echo $OUTPUT->heading(get_string('modulenameplural', 'Acclaim'), 2);
-echo html_writer::table($table);
+echo $OUTPUT->heading(get_string('modulenameplural', 'acclaim'), 2);
+print_table($table);
+
+/// Finish the page
+
 echo $OUTPUT->footer();

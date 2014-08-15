@@ -15,18 +15,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 /**
- * Library of interface functions and constants for module Acclaim
+ * Library of interface functions and constants for module acclaim
  *
  * All the core Moodle functions, neeeded to allow the module to work
  * integrated in Moodle should be placed here.
- * All the Acclaim specific functions, needed to implement all the module
+ * All the acclaim specific functions, needed to implement all the module
  * logic, should go to locallib.php. This will help to save some memory when
  * Moodle is performing actions across all modules.
  *
- * @package    mod_Acclaim
- * @copyright  2011 Your Name
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_acclaim
+ * @copyright 2010 Your Name
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -34,73 +35,53 @@ defined('MOODLE_INTERNAL') || die();
 /** example constant */
 //define('NEWMODULE_ULTIMATE_ANSWER', 42);
 
-////////////////////////////////////////////////////////////////////////////////
-// Moodle core API                                                            //
-////////////////////////////////////////////////////////////////////////////////
-
 /**
- * Returns the information on whether the module supports a feature
- *
- * @see plugin_supports() in lib/moodlelib.php
- * @param string $feature FEATURE_xx constant for requested feature
- * @return mixed true if the feature is supported, null if unknown
+ * If you for some reason need to use global variables instead of constants, do not forget to make them
+ * global as this file can be included inside a function scope. However, using the global variables
+ * at the module level is not a recommended.
  */
-function Acclaim_supports($feature) {
-    switch($feature) {
-        case FEATURE_MOD_INTRO:         return true;
-        case FEATURE_SHOW_DESCRIPTION:  return true;
-
-        default:                        return null;
-    }
-}
+//global $NEWMODULE_GLOBAL_VARIABLE;
+//$NEWMODULE_QUESTION_OF = array('Life', 'Universe', 'Everything');
 
 /**
- * Saves a new instance of the Acclaim into the database
- *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will create a new instance and return the id number
  * of the new instance.
  *
- * @param object $Acclaim An object from the form in mod_form.php
- * @param mod_Acclaim_mod_form $mform
- * @return int The id of the newly inserted Acclaim record
+ * @param object $acclaim An object from the form in mod_form.php
+ * @return int The id of the newly inserted acclaim record
  */
-function Acclaim_add_instance(stdClass $Acclaim, mod_Acclaim_mod_form $mform = null) {
+function acclaim_add_instance($acclaim) {
     global $DB;
 
-    $Acclaim->timecreated = time();
+    $acclaim->timecreated = time();
 
     # You may have to add extra stuff in here #
 
-    return $DB->insert_record('Acclaim', $Acclaim);
+    return $DB->insert_record('acclaim', $acclaim);
 }
 
 /**
- * Updates an instance of the Acclaim in the database
- *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will update an existing instance with new data.
  *
- * @param object $Acclaim An object from the form in mod_form.php
- * @param mod_Acclaim_mod_form $mform
+ * @param object $acclaim An object from the form in mod_form.php
  * @return boolean Success/Fail
  */
-function Acclaim_update_instance(stdClass $Acclaim, mod_Acclaim_mod_form $mform = null) {
+function acclaim_update_instance($acclaim) {
     global $DB;
 
-    $Acclaim->timemodified = time();
-    $Acclaim->id = $Acclaim->instance;
+    $acclaim->timemodified = time();
+    $acclaim->id = $acclaim->instance;
 
     # You may have to add extra stuff in here #
 
-    return $DB->update_record('Acclaim', $Acclaim);
+    return $DB->update_record('acclaim', $acclaim);
 }
 
 /**
- * Removes an instance of the Acclaim from the database
- *
  * Given an ID of an instance of this module,
  * this function will permanently delete the instance
  * and any data that depends on it.
@@ -108,86 +89,58 @@ function Acclaim_update_instance(stdClass $Acclaim, mod_Acclaim_mod_form $mform 
  * @param int $id Id of the module instance
  * @return boolean Success/Failure
  */
-function Acclaim_delete_instance($id) {
+function acclaim_delete_instance($id) {
     global $DB;
 
-    if (! $Acclaim = $DB->get_record('Acclaim', array('id' => $id))) {
+    if (! $acclaim = $DB->get_record('acclaim', array('id' => $id))) {
         return false;
     }
 
     # Delete any dependent records here #
 
-    $DB->delete_records('Acclaim', array('id' => $Acclaim->id));
+    $DB->delete_records('acclaim', array('id' => $acclaim->id));
 
     return true;
 }
 
 /**
- * Returns a small object with summary information about what a
+ * Return a small object with summary information about what a
  * user has done with a given particular instance of this module
  * Used for user activity reports.
  * $return->time = the time they did it
  * $return->info = a short text description
  *
- * @return stdClass|null
+ * @return null
+ * @todo Finish documenting this function
  */
-function Acclaim_user_outline($course, $user, $mod, $Acclaim) {
-
-    $return = new stdClass();
+function acclaim_user_outline($course, $user, $mod, $acclaim) {
+    $return = new stdClass;
     $return->time = 0;
     $return->info = '';
     return $return;
 }
 
 /**
- * Prints a detailed representation of what a user has done with
+ * Print a detailed representation of what a user has done with
  * a given particular instance of this module, for user activity reports.
  *
- * @param stdClass $course the current course record
- * @param stdClass $user the record of the user we are generating report for
- * @param cm_info $mod course module info
- * @param stdClass $Acclaim the module instance record
- * @return void, is supposed to echp directly
+ * @return boolean
+ * @todo Finish documenting this function
  */
-function Acclaim_user_complete($course, $user, $mod, $Acclaim) {
+function acclaim_user_complete($course, $user, $mod, $acclaim) {
+    return true;
 }
 
 /**
  * Given a course and a time, this module should find recent activity
- * that has occurred in Acclaim activities and print it out.
+ * that has occurred in acclaim activities and print it out.
  * Return true if there was output, or false is there was none.
  *
  * @return boolean
+ * @todo Finish documenting this function
  */
-function Acclaim_print_recent_activity($course, $viewfullnames, $timestart) {
+function acclaim_print_recent_activity($course, $viewfullnames, $timestart) {
     return false;  //  True if anything was printed, otherwise false
-}
-
-/**
- * Prepares the recent activity data
- *
- * This callback function is supposed to populate the passed array with
- * custom activity records. These records are then rendered into HTML via
- * {@link Acclaim_print_recent_mod_activity()}.
- *
- * @param array $activities sequentially indexed array of objects with the 'cmid' property
- * @param int $index the index in the $activities to use for the next record
- * @param int $timestart append activity since this time
- * @param int $courseid the id of the course we produce the report for
- * @param int $cmid course module id
- * @param int $userid check for a particular user's activity only, defaults to 0 (all users)
- * @param int $groupid check for a particular group's activity only, defaults to 0 (all groups)
- * @return void adds items into $activities and increases $index
- */
-function Acclaim_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid=0, $groupid=0) {
-}
-
-/**
- * Prints single activity item prepared by {@see Acclaim_get_recent_mod_activity()}
-
- * @return void
- */
-function Acclaim_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
 }
 
 /**
@@ -198,59 +151,60 @@ function Acclaim_print_recent_mod_activity($activity, $courseid, $detail, $modna
  * @return boolean
  * @todo Finish documenting this function
  **/
-function Acclaim_cron () {
+function acclaim_cron () {
     return true;
 }
 
 /**
- * Returns all other caps used in the module
+ * Must return an array of users who are participants for a given instance
+ * of acclaim. Must include every user involved in the instance,
+ * independient of his role (student, teacher, admin...). The returned
+ * objects must contain at least id property.
+ * See other modules as example.
  *
- * @example return array('moodle/site:accessallgroups');
- * @return array
+ * @param int $acclaimid ID of an instance of this module
+ * @return boolean|array false if no participants, array of objects otherwise
  */
-function Acclaim_get_extra_capabilities() {
-    return array();
+function acclaim_get_participants($acclaimid) {
+    return false;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Gradebook API                                                              //
-////////////////////////////////////////////////////////////////////////////////
-
 /**
- * Is a given scale used by the instance of Acclaim?
- *
- * This function returns if a scale is being used by one Acclaim
+ * This function returns if a scale is being used by one acclaim
  * if it has support for grading and scales. Commented code should be
  * modified if necessary. See forum, glossary or journal modules
  * as reference.
  *
- * @param int $Acclaimid ID of an instance of this module
- * @return bool true if the scale is used by the given Acclaim instance
+ * @param int $acclaimid ID of an instance of this module
+ * @return mixed
+ * @todo Finish documenting this function
  */
-function Acclaim_scale_used($Acclaimid, $scaleid) {
+function acclaim_scale_used($acclaimid, $scaleid) {
     global $DB;
 
-    /** @example */
-    if ($scaleid and $DB->record_exists('Acclaim', array('id' => $Acclaimid, 'grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+    $return = false;
+
+    //$rec = $DB->get_record("acclaim", array("id" => "$acclaimid", "scale" => "-$scaleid"));
+    //
+    //if (!empty($rec) && !empty($scaleid)) {
+    //    $return = true;
+    //}
+
+    return $return;
 }
 
 /**
- * Checks if scale is being used by any instance of Acclaim.
+ * Checks if scale is being used by any instance of acclaim.
+ * This function was added in 1.9
  *
- * This is used to find out if scale used anywhere.
- *
+ * This is used to find out if scale used anywhere
  * @param $scaleid int
- * @return boolean true if the scale is used by any Acclaim instance
+ * @return boolean True if the scale is used by any acclaim
  */
-function Acclaim_scale_used_anywhere($scaleid) {
+function acclaim_scale_used_anywhere($scaleid) {
     global $DB;
 
-    /** @example */
-    if ($scaleid and $DB->record_exists('Acclaim', array('grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('acclaim', 'grade', -$scaleid)) {
         return true;
     } else {
         return false;
@@ -258,138 +212,11 @@ function Acclaim_scale_used_anywhere($scaleid) {
 }
 
 /**
- * Creates or updates grade item for the give Acclaim instance
+ * Execute post-uninstall custom actions for the module
+ * This function was added in 1.9
  *
- * Needed by grade_update_mod_grades() in lib/gradelib.php
- *
- * @param stdClass $Acclaim instance object with extra cmidnumber and modname property
- * @param mixed optional array/object of grade(s); 'reset' means reset grades in gradebook
- * @return void
+ * @return boolean true if success, false on error
  */
-function Acclaim_grade_item_update(stdClass $Acclaim, $grades=null) {
-    global $CFG;
-    require_once($CFG->libdir.'/gradelib.php');
-
-    /** @example */
-    $item = array();
-    $item['itemname'] = clean_param($Acclaim->name, PARAM_NOTAGS);
-    $item['gradetype'] = GRADE_TYPE_VALUE;
-    $item['grademax']  = $Acclaim->grade;
-    $item['grademin']  = 0;
-
-    grade_update('mod/Acclaim', $Acclaim->course, 'mod', 'Acclaim', $Acclaim->id, 0, null, $item);
-}
-
-/**
- * Update Acclaim grades in the gradebook
- *
- * Needed by grade_update_mod_grades() in lib/gradelib.php
- *
- * @param stdClass $Acclaim instance object with extra cmidnumber and modname property
- * @param int $userid update grade of specific user only, 0 means all participants
- * @return void
- */
-function Acclaim_update_grades(stdClass $Acclaim, $userid = 0) {
-    global $CFG, $DB;
-    require_once($CFG->libdir.'/gradelib.php');
-
-    /** @example */
-    $grades = array(); // populate array of grade objects indexed by userid
-
-    grade_update('mod/Acclaim', $Acclaim->course, 'mod', 'Acclaim', $Acclaim->id, 0, $grades);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// File API                                                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Returns the lists of all browsable file areas within the given module context
- *
- * The file area 'intro' for the activity introduction field is added automatically
- * by {@link file_browser::get_file_info_context_module()}
- *
- * @param stdClass $course
- * @param stdClass $cm
- * @param stdClass $context
- * @return array of [(string)filearea] => (string)description
- */
-function Acclaim_get_file_areas($course, $cm, $context) {
-    return array();
-}
-
-/**
- * File browsing support for Acclaim file areas
- *
- * @package mod_Acclaim
- * @category files
- *
- * @param file_browser $browser
- * @param array $areas
- * @param stdClass $course
- * @param stdClass $cm
- * @param stdClass $context
- * @param string $filearea
- * @param int $itemid
- * @param string $filepath
- * @param string $filename
- * @return file_info instance or null if not found
- */
-function Acclaim_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
-    return null;
-}
-
-/**
- * Serves the files from the Acclaim file areas
- *
- * @package mod_Acclaim
- * @category files
- *
- * @param stdClass $course the course object
- * @param stdClass $cm the course module object
- * @param stdClass $context the Acclaim's context
- * @param string $filearea the name of the file area
- * @param array $args extra arguments (itemid, path)
- * @param bool $forcedownload whether or not force download
- * @param array $options additional options affecting the file serving
- */
-function Acclaim_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload, array $options=array()) {
-    global $DB, $CFG;
-
-    if ($context->contextlevel != CONTEXT_MODULE) {
-        send_file_not_found();
-    }
-
-    require_login($course, true, $cm);
-
-    send_file_not_found();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Navigation API                                                             //
-////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Extends the global navigation tree by adding Acclaim nodes if there is a relevant content
- *
- * This can be called by an AJAX request so do not rely on $PAGE as it might not be set up properly.
- *
- * @param navigation_node $navref An object representing the navigation tree node of the Acclaim module instance
- * @param stdClass $course
- * @param stdClass $module
- * @param cm_info $cm
- */
-function Acclaim_extend_navigation(navigation_node $navref, stdclass $course, stdclass $module, cm_info $cm) {
-}
-
-/**
- * Extends the settings navigation with the Acclaim settings
- *
- * This function is called when the context for the page is a Acclaim module. This is not called by AJAX
- * so it is safe to rely on the $PAGE.
- *
- * @param settings_navigation $settingsnav {@link settings_navigation}
- * @param navigation_node $Acclaimnode {@link navigation_node}
- */
-function Acclaim_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $Acclaimnode=null) {
+function acclaim_uninstall() {
+    return true;
 }

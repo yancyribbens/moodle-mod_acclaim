@@ -17,24 +17,23 @@
 
 
 /**
- * English strings for Acclaim
+ * English strings for acclaim
  *
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_Acclaim
- * @copyright  2011 Your Name
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_acclaim
+ * @copyright 2010 Your Name
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'Acclaim';
-$string['modulenameplural'] = 'Acclaims';
-$string['modulename_help'] = 'Use the Acclaim module for... | The Acclaim module allows...';
-$string['Acclaimfieldset'] = 'Custom example fieldset';
-$string['Acclaimname'] = 'Acclaim name';
-$string['Acclaimname_help'] = 'This is the content of the help tooltip associated with the Acclaimname field. Markdown syntax is supported.';
-$string['Acclaim'] = 'Acclaim';
-$string['pluginadministration'] = 'Acclaim administration';
-$string['pluginname'] = 'Acclaim';
+$string['modulename'] = 'acclaim';
+$string['modulenameplural'] = 'acclaims';
+$string['acclaimfieldset'] = 'Custom example fieldset';
+$string['acclaimname'] = 'acclaim name';
+$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
+$string['acclaim'] = 'acclaim';
+$string['pluginadministration'] = 'acclaim administration';
+$string['pluginname'] = 'acclaim';

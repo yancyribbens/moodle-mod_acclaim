@@ -5,30 +5,24 @@ this module template code.
 
 * Unzip the archive and read this file
 
-* Rename the Acclaim/ folder to the name of your module (eg "Acclaim").
-  The module folder MUST be lower case and can't contain underscores. You should check the CVS contrib
+* Rename the NEWMODULE/ folder to the name of your module (eg "widget").
+  The module folder MUST be lower case. You should check the CVS contrib
   area at http://cvs.moodle.org/contrib/plugins/mod/ to make sure that
-  your name is not already used by an other module. Registering the plugin
-  name @ http://moodle.org/plugins will secure it for you.
+  your name is not already used by an other module.
 
 * Edit all the files in this directory and its subdirectories and change
-  all the instances of the string "Acclaim" to your module name
-  (eg "Acclaim"). If you are using Linux, you can use the following command
-  $ find . -type f -exec sed -i 's/Acclaim/Acclaim/g' {} \;
-  
-  On a mac, use:
-  $ find . -type f -exec sed -i '' 's/Acclaim/Acclaim/g' {} \;
+  all the instances of the string "acclaim" to your module name
+  (eg "widget"). If you are using Linux, you can use the following command
+  $ find . -type f -exec sed -i 's/acclaim/widget/g' {} \;
 
-* Rename the file lang/en/Acclaim.php to lang/en/Acclaim.php
-  where "Acclaim" is the name of your module
+* Rename the file lang/en_utf8/acclaim.php to lang/en_utf8/widget.php
+  where "widget" is the name of your module
 
-* Place the Acclaim folder into the /mod folder of the moodle
+* Place the widget folder into the /mod folder of the moodle
   directory.
 
 * Go to Settings > Site Administration > Development > XMLDB editor
   and modify the module's tables.
-  Make sure, that the web server has write-access to the db/ folder.
-  You need at least one table, even if your module doesn't use it.
 
 * Modify version.php and set the initial version of you module.
 
@@ -36,7 +30,7 @@ this module template code.
   the module's tables successfully created
 
 * Go to Site Administration > Plugins > Activity modules > Manage activities
-  and you should find that this Acclaim has been added to the list of
+  and you should find that this acclaim has been added to the list of
   installed modules.
 
 * You may now proceed to run your own code in an attempt to develop

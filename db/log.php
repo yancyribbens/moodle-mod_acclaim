@@ -17,14 +17,13 @@
 
 /**
  * Definition of log events
- *
  * NOTE: this is an example how to insert log event during installation/update.
  * It is not really essential to know about it, but these logs were created as example
  * in the previous 1.9 NEWMODULE.
  *
- * @package    mod_Acclaim
- * @copyright  2011 Your Name <your@email.adress>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_acclaim
+ * @copyright 2010 Your Name <your@email.adress>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -32,8 +31,8 @@ defined('MOODLE_INTERNAL') || die();
 global $DB;
 
 $logs = array(
-    array('module'=>'Acclaim', 'action'=>'add', 'mtable'=>'Acclaim', 'field'=>'name'),
-    array('module'=>'Acclaim', 'action'=>'update', 'mtable'=>'Acclaim', 'field'=>'name'),
-    array('module'=>'Acclaim', 'action'=>'view', 'mtable'=>'Acclaim', 'field'=>'name'),
-    array('module'=>'Acclaim', 'action'=>'view all', 'mtable'=>'Acclaim', 'field'=>'name')
+    array('module'=>'acclaim', 'action'=>'add', 'mtable'=>'acclaim', 'field'=>'name'),
+    array('module'=>'acclaim', 'action'=>'update', 'mtable'=>'acclaim', 'field'=>'name'),
+    array('module'=>'acclaim', 'action'=>'view', 'mtable'=>'acclaim', 'field'=>'name'),
+    array('module'=>'acclaim', 'action'=>'view all', 'mtable'=>'acclaim', 'field'=>'name')
 );
