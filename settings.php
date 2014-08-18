@@ -20,76 +20,29 @@
  *
  * The values defined here are often used as defaults for all module instances.
  *
- * @package    mod_workshop
- * @copyright  2009 David Mudrak <david.mudrak@gmail.com>
+ * @package    mod_acclaim
+ * @copyright  2014 Yancy Ribbens <yancy.ribbens@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+require_once($CFG->dirroot.'/mod/acclaim/locallib.php');
+$pagetitle = get_string('modulename','acclaim');
+
 if ($ADMIN->fulltree) {
-    require_once($CFG->dirroot.'/mod/acclaim/locallib.php');
-    
-    $module_name = get_string('modulename','acclaim');
-    print $module_name;
+    $settings->add(new admin_setting_configtext( 'api', 'Acclaim API', 'Example: https://youracclaim.com/api/v1/organizations/your_org_id/badges', null, PARAM_TEXT));
 
-//    $grades = workshop::available_maxgrades_list();
+    $settings->add(new admin_setting_configtext( 'badge_template_id', 'Badge Template ID', 'Example: ab8b9e91-b83b-4e80-acb6-33449016ec11', null, PARAM_TEXT));
 
-//    $settings->add(new admin_setting_configselect('workshop/grade', get_string('submissiongrade', 'workshop'),
-//                        get_string('configgrade', 'workshop'), 80, $grades));
+    $settings->add(new admin_setting_configtext( 'issued_to_first_name', 'Issued To First Name', 'Example: Yancy', null, PARAM_TEXT));
 
-//    $settings->add(new admin_setting_configselect('workshop/gradinggrade', get_string('gradinggrade', 'workshop'),
-//                        get_string('configgradinggrade', 'workshop'), 20, $grades));
+    $settings->add(new admin_setting_configtext( 'issued_to_last_name', 'Issued To Last Name', 'Example: Ribbens', null, PARAM_TEXT));
 
-//    $options = array();
-//    for ($i = 5; $i >= 0; $i--) {
-//        $options[$i] = $i;
-//    }
-//    $settings->add(new admin_setting_configselect('workshop/gradedecimals', get_string('gradedecimals', 'workshop'),
-//                        get_string('configgradedecimals', 'workshop'), 0, $options));
+    $settings->add(new admin_setting_configtext( 'recipient_email', 'Recipient Email', 'Example: yancy.ribbens@example.com', null, PARAM_TEXT));
 
-//    if (isset($CFG->maxbytes)) {
-//        $maxbytes = get_config('workshop', 'maxbytes');
-//        $options = get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes);
-//        $settings->add(new admin_setting_configselect('workshop/maxbytes', get_string('maxbytes', 'workshop'),
-//                            get_string('configmaxbytes', 'workshop'), 0, $options));
-//    }
+    $settings->add(new admin_setting_configtext( 'issued_at', 'Issued At', 'Example: 2014-04-01 09:41:00 -0500', null, PARAM_TEXT));
 
-//    $settings->add(new admin_setting_configselect('workshop/strategy', get_string('strategy', 'workshop'),
-//                        get_string('configstrategy', 'workshop'), 'accumulative', workshop::available_strategies_list()));
-
-//    $options = workshop::available_example_modes_list();
-//    $settings->add(new admin_setting_configselect('workshop/examplesmode', get_string('examplesmode', 'workshop'),
-//                        get_string('configexamplesmode', 'workshop'), workshop::EXAMPLES_VOLUNTARY, $options));
-
-    // include the settings of allocation subplugins
-//    $allocators = core_component::get_plugin_list('workshopallocation');
-//    foreach ($allocators as $allocator => $path) {
-//        if (file_exists($settingsfile = $path . '/settings.php')) {
-//            $settings->add(new admin_setting_heading('workshopallocationsetting'.$allocator,
-//                    get_string('allocation', 'workshop') . ' - ' . get_string('pluginname', 'workshopallocation_' . $allocator), ''));
-//            include($settingsfile);
-//        }
-//    }
-
-    // include the settings of grading strategy subplugins
-//    $strategies = core_component::get_plugin_list('workshopform');
-//    foreach ($strategies as $strategy => $path) {
-//        if (file_exists($settingsfile = $path . '/settings.php')) {
-//            $settings->add(new admin_setting_heading('workshopformsetting'.$strategy,
-//                    get_string('strategy', 'workshop') . ' - ' . get_string('pluginname', 'workshopform_' . $strategy), ''));
-//            include($settingsfile);
-//        }
-//    }
-
-    // include the settings of grading evaluation subplugins
-//    $evaluations = core_component::get_plugin_list('workshopeval');
-//    foreach ($evaluations as $evaluation => $path) {
-//        if (file_exists($settingsfile = $path . '/settings.php')) {
-//            $settings->add(new admin_setting_heading('workshopevalsetting'.$evaluation,
-//                    get_string('evaluation', 'workshop') . ' - ' . get_string('pluginname', 'workshopeval_' . $evaluation), ''));
-//            include($settingsfile);
-//        }
-//    }
-
+    $settings->add(new admin_setting_configtext( 'expires_at', 'Expires At', 'Example: 2018-04-01 09:41:00 -0500', null, PARAM_TEXT));
 }
+
