@@ -29,11 +29,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'acclaim';
-$string['modulenameplural'] = 'acclaims';
-$string['acclaimfieldset'] = 'Custom example fieldset';
-$string['acclaimname'] = 'acclaim name';
-$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
-$string['acclaim'] = 'acclaim';
-$string['pluginadministration'] = 'acclaim administration';
-$string['pluginname'] = 'acclaim';
+$string['modulename'] = 'Acclaim';
+$string['modulenameplural'] = 'Acclaims';
+$string['badge_template_id'] = 'Badge Template ID';
+//$string['acclaimfieldset'] = 'Custom example fieldset';
+//$string['acclaimname'] = 'acclaim name';
+//$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
+//$string['acclaim'] = 'acclaim';
+//$string['pluginadministration'] = 'acclaim administration';
+//$string['pluginname'] = 'acclaim';
