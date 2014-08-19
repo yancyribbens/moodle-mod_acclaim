@@ -33,6 +33,8 @@ $pagetitle = get_string('modulename','acclaim');
 if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext( 'api', 'Acclaim API', 'Example: https://youracclaim.com/api/v1/organizations/your_org_id/badges', null, PARAM_TEXT));
 
+    $settings->add(new admin_setting_configtext( 'token', 'Token', 'Example: FZ9QZ4sDtEwNR7Tcv-Yi', null, PARAM_TEXT));
+
     $settings->add(new admin_setting_configtext( 'badge_template_id', 'Badge Template ID', 'Example: ab8b9e91-b83b-4e80-acb6-33449016ec11', null, PARAM_TEXT));
 
     $settings->add(new admin_setting_configtext( 'issued_to_first_name', 'Issued To First Name', 'Example: Yancy', null, PARAM_TEXT));
