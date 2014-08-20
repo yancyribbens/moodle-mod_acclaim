@@ -4,13 +4,12 @@ namespace mod_acclaim\event;
 defined('MOODLE_INTERNAL') || die();
 
 class issue_badge extends \core\event\base {
-/*
     protected function init() {
         $this->data['crud'] = 'c'; // c(reate), r(ead), u(pdate), d(elete)
         $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
         $this->data['objecttable'] = 'issued_badge';
     }
- 
+ /*
     public static function get_name() {
         return get_string('eventbadgeissued', 'acclaim');
     }
