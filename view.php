@@ -23,7 +23,7 @@
  * if you like, and it can span multiple lines.
  *
  * @package   mod_acclaim
- * @copyright 2014 Yancy Ribbens
+ * @copyright 2014 Yancy Ribbens, Hai Li 
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
