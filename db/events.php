@@ -26,9 +26,17 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+//$handlers = array(
+//    'user_enrolled' => array (
+//	'handlerfile'      => '/mod/acclaim/lib.php',
+//        'handlerfunction'  => 'issue_badge',
+//        'schedule'         => 'instant',
+//        'internal'         => 1,
+//    ),
+//);
+
 $observers = array(
     array(
-	#'eventname' => '*',
         'eventname' => '\core\event\course_completed',
         'callback' => '\mod_acclaim\group_observers::issue_badge',
     ),
