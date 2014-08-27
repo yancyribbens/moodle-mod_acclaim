@@ -68,4 +68,5 @@ Badge Template Id: The specific badge you want to issue to student once they com
 
 Expires at: Expiration date of badge 
 
+If you want to change these settings later, go to site administration->Plugins overview->Acclaim->Settings
 
