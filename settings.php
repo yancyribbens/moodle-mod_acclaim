@@ -39,14 +39,6 @@ if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_configtext( 'badge_template_id', 'Badge Template ID', 'Example: ab8b9e91-b83b-4e80-acb6-33449016ec11', null, PARAM_TEXT));
 
-//    $settings->add(new admin_setting_configtext( 'issued_to_first_name', 'Issued To First Name', 'Example: Yancy', null, PARAM_TEXT));
-
-  //  $settings->add(new admin_setting_configtext( 'issued_to_last_name', 'Issued To Last Name', 'Example: Ribbens', null, PARAM_TEXT));
-
-    //$settings->add(new admin_setting_configtext( 'recipient_email', 'Recipient Email', 'Example: yancy.ribbens@example.com', null, PARAM_TEXT));
-
-   // $settings->add(new admin_setting_configtext( 'issued_at', 'Issued At', 'Example: 2014-04-01 09:41:00 -0500', null, PARAM_TEXT));
-
     $settings->add(new admin_setting_configtext( 'expires_at', 'Expires At', 'Example: 2018-04-01 09:41:00 -0500', null, PARAM_TEXT));
 }
 
