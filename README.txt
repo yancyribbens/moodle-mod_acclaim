@@ -1,42 +1,38 @@
-The following steps should get you up and running with
-this module template code.
+# Acclaim Integration for Moodle 
 
-* DO NOT PANIC!
+## Description 
+The Accliam plugin allows to integrate with the Acclaim platform. Badges will be
+issued to student who have completed specific courses on moodle. 
 
-* Unzip the archive and read this file
+## Test Environment Setup 
+More detailed description of PHPUnit and writing PHPunit test can be found under moodle documentation 
+https://docs.moodle.org/dev/PHPUnit
+https://docs.moodle.org/dev/Writing_PHPUnit_tests 
 
-* Rename the NEWMODULE/ folder to the name of your module (eg "widget").
-  The module folder MUST be lower case. You should check the CVS contrib
-  area at http://cvs.moodle.org/contrib/plugins/mod/ to make sure that
-  your name is not already used by an other module.
+### Composer installation
+Composer is a dependency manager for PHP projects. It installs PHP libraries into /vendor/ subdirectory inside your moodle dirroot.
 
-* Edit all the files in this directory and its subdirectories and change
-  all the instances of the string "acclaim" to your module name
-  (eg "widget"). If you are using Linux, you can use the following command
-  $ find . -type f -exec sed -i 's/acclaim/widget/g' {} \;
+install Composer - http://getcomposer.org/doc/00-intro.md
+install PHUnit and dependencies - go to your Moodle dirroot and execute php composer.phar install --dev
+## Configure your server
+You need to create a new dataroot directory and specify a separate database prefix for the test environment, see config-dist.php for more information.
 
-* Rename the file lang/en_utf8/acclaim.php to lang/en_utf8/widget.php
-  where "widget" is the name of your module
+add $CFG->phpunit_prefix = 'phpu_'; to your config.php file
+and $CFG->phpunit_dataroot = '/path/to/phpunitdataroot'; to your config.php file
+### Initialise the test environment
+Before first execution and after every upgrade the PHPUnit test environment needs to be initialised, this command also builds the phpunit.xml configuration files.
 
-* Place the widget folder into the /mod folder of the moodle
-  directory.
-
-* Go to Settings > Site Administration > Development > XMLDB editor
-  and modify the module's tables.
-
-* Modify version.php and set the initial version of you module.
-
-* Visit Settings > Site Administration > Notifications, you should find
-  the module's tables successfully created
-
-* Go to Site Administration > Plugins > Activity modules > Manage activities
-  and you should find that this acclaim has been added to the list of
-  installed modules.
-
-* You may now proceed to run your own code in an attempt to develop
-  your module. You will probably want to modify mod_form.php and view.php
-  as a first step. Check db/access.php to add capabilities.
-
-We encourage you to share your code and experience - visit http://moodle.org
-
-Good luck!
+execute php admin/tool/phpunit/cli/init.php
+### Execute tests
+execute vendor/bin/phpunit from dirroot directory
+you can execute a single test case class using class name followed by path to test file vendor/bin/phpunit core_phpunit_basic_testcase lib/tests/phpunit_test.php
+it is also possible to create custom configuration files in xml format and use vendor/bin/phpunit -c mytestsuites.xml
+### How to add more tests?
+create tests/ directory in your add-on
+add test file, for example local/mytest/tests/my_test.php file with local_my_test case class that extends basic_testcase or advanced_testcase
+add some test_*() methods
+execute your new test case vendor/bin/phpunit local_my_testcase local/mytest/tests/my_test.php
+execute php admin/tool/phpunit/cli/init.php to get the plugin tests included in main phpunit.xml configuration file
+### Windows support
+use \ instead of / in paths in examples above
+ 
