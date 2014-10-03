@@ -49,7 +49,13 @@ if ($id) {
 
 require_login($course, true, $cm);
 
-add_to_log($course->id, 'acclaim', 'view', "view.php?id=$cm->id", $acclaim->name, $cm->id);
+#add_to_log($course->id, 'acclaim', 'view', "view.php?id=$cm->id", $acclaim->name, $cm->id);
+
+$event = \acclaim\event\EVENTNAME::create(array(
+    'objectid' => $objid,
+    'context' => context_module::instance($cmid)
+));
+$event->trigger();
 
 /// Print the page header
 

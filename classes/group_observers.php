@@ -30,10 +30,13 @@ require_once($CFG->dirroot . '/mod/acclaim/locallib.php');
 class group_observers {
 
     public static function issue_badge($event) {
-        $org_id="6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c";
-        $url="https://jefferson-staging.herokuapp.com/api/v1/organizations/".$org_id."/badges";
+        
+        add_to_log(1, 'acclaim', '', '', 'test', 'test');
 
-        $username = $argv[1];
+        $org_id='6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c';
+        $url='https://jefferson-staging.herokuapp.com/api/v1/organizations/'.$org_id.'/badges';
+
+        $username = 'FZ1QZ4sDtEwNR7Tcv-Yi';
         $password = "";
 
         $data = array(

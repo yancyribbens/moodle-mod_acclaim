@@ -32,9 +32,21 @@ defined('MOODLE_INTERNAL') || die();
 $string['modulename'] = 'Acclaim';
 $string['modulenameplural'] = 'Acclaims';
 $string['badge_template_id'] = 'Badge Template ID';
-//$string['acclaimfieldset'] = 'Custom example fieldset';
-//$string['acclaimname'] = 'acclaim name';
-//$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
-//$string['acclaim'] = 'acclaim';
-//$string['pluginadministration'] = 'acclaim administration';
-//$string['pluginname'] = 'acclaim';
+$string['acclaimfieldset'] = 'Custom example fieldset';
+$string['acclaimname'] = 'acclaim name';
+$string['acclaimname_help'] = 'This is the content of the help tooltip associated with the acclaimname field. Markdown syntax is supported.';
+$string['acclaim'] = 'Acclaim';
+$string['pluginadministration'] = 'acclaim administration';
+$string['pluginname'] = 'Acclaim';
+
+$string['eventbadgeissued'] = 'A badge has been issued';
+
+$string['acclaimintro'] = 'The vaules set here will be used to issue a new badge to acclaim';
+$string['badge_template_id'] = 'Badge Template ID';
+$string['issued_to_first_name'] = 'Issue To First Name';
+$string['issued_to_last_name'] = 'Issue To Last Name';
+$string['expires_at'] = 'Badge Expires At';
+$string['recipient_email'] = 'Recipient Email';
+$string['issued_at'] = 'Badge Issued At';
+$string['acclaim_api'] = 'Acclaim_API';
+
