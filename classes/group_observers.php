@@ -26,12 +26,15 @@ namespace mod_acclaim;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/mod/acclaim/locallib.php');
-
 class group_observers {
 
     public static function issue_badge($event) {
-        
-        add_to_log(1, 'acclaim', '', '', 'test', 'test');
+
+        //var_dump($event);
+        error_log('Event Data: ' . print_r($event,true));
+        //$f = "/tmp/moodle_called_issue_badge";
+        //file_put_contents($f,"test");
+
 
         $org_id='6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c';
         $url='https://jefferson-staging.herokuapp.com/api/v1/organizations/'.$org_id.'/badges';
@@ -40,7 +43,7 @@ class group_observers {
         $password = "";
 
         $data = array(
-            'badge_template_id' => 'ab8b9e91-b83b-4e80-acb6-33449016ec11',
+            'badge_template_id' => '287d9248-89df-4ab8-af1c-71b195c494a8',
             'issued_to_first_name' => 'yancy',
             'issued_to_last_name' => 'ribbens',
             'expires_at' => '2018-04-01 09:41:00 -0500',
@@ -59,10 +62,14 @@ class group_observers {
             CURLOPT_USERPWD        => $username . ":" . $password,
             CURLOPT_POSTFIELDS     => $data,
         );
+
         curl_setopt_array($ch, $curlConfig);
 
         $result = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
     }
 }
+
+?>

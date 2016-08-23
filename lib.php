@@ -26,7 +26,7 @@
  * Moodle is performing actions across all modules.
  *
  * @package   mod_acclaim
- * @copyright 2010 Your Name
+ * @copyright 2014 Yancy Ribbens
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -219,4 +219,43 @@ function acclaim_scale_used_anywhere($scaleid) {
  */
 function acclaim_uninstall() {
     return true;
+}
+
+function issue_badge($event) {
+
+    //$f = "/tmp/moodle_called_issue_badge";
+    //file_put_contents($f,"test");
+
+    $org_id='6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c';
+    $url='https://jefferson-staging.herokuapp.com/api/v1/organizations/'.$org_id.'/badges';
+
+    $username = 'FZ1QZ4sDtEwNR7Tcv-Yi';
+    $password = "";
+
+    $data = array(
+        'badge_template_id' => 'f2f26ee8-4882-4e03-a33c-5e2a6961c8b3',
+        'issued_to_first_name' => 'yancy',
+        'issued_to_last_name' => 'ribbens',
+        'expires_at' => '2018-04-01 09:41:00 -0500',
+        'recipient_email' => 'yancy.ribbens+test_again@gmail.com',
+        'issued_at' => '2014-04-01 09:41:00 -0500'
+    );
+
+    $ch = curl_init();
+
+    $curlConfig = array(
+        CURLOPT_HTTPHEADER     => array('Accept: application/json'),
+        CURLOPT_CUSTOMREQUEST  => "POST",
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_URL            => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_USERPWD        => $username . ":" . $password,
+        CURLOPT_POSTFIELDS     => $data,
+    );
+
+    curl_setopt_array($ch, $curlConfig);
+
+    $result = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
 }
