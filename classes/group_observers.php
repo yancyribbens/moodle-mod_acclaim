@@ -33,27 +33,37 @@ class group_observers {
         $user_id = $event->userid;
         $user = $DB->get_record('user', array('id'=>$user_id));
         $firstname = $user->firstname;
-        $lastname = $user->lastname;    
+        $lastname = $user->lastname;
+	$email = $user->email;
+        
+        $api = $DB->get_record('config', array('name'=>'api'));
+        $token = $DB->get_record('config', array('name'=>'token'));
+        $badge_id = $DB->get_record('config', array('name'=>'badge_template_id'));
+        $expires_at = $DB->get_record('config', array('name'=>'expires_at'));
+        $url = $api->value;
 
         //error_log('User Record: '.print_r($user,true));
+        //error_log('url'.print_r($url,true));
         //error_log('Event Data: ' . print_r($event,true));
 
-        $org_id='6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c';
-        $url='https://jefferson-staging.herokuapp.com/api/v1/organizations/'.$org_id.'/badges';
+        //$org_id='6bb2e1c7-c66b-4d47-9301-4a6b9e792e2c';
+        //$url='https://jefferson-staging.herokuapp.com/api/v1/organizations/'.$org_id.'/badges';
 
-        $username = 'FZ1QZ4sDtEwNR7Tcv-Yi';
+        //$username = 'FZ1QZ4sDtEwNR7Tcv-Yi';
+        $date_time = date('Y-m-d  h:i:s a', time());
         $password = "";
 
         $data = array(
-            'badge_template_id' => '287d9248-89df-4ab8-af1c-71b195c494a8',
-            'issued_to_first_name' => $firstname,
-            'issued_to_last_name' => $lastname,
-            'expires_at' => '2018-04-01 09:41:00 -0500',
-            'recipient_email' => 'yancy.ribbens+test_again@gmail.com',
-            'issued_at' => '2014-04-01 09:41:00 -0500'
+            'badge_template_id' => $badge_id->value,
+            'issued_to_first_name' => $user->firstname,
+            'issued_to_last_name' => $user->lastname,
+            'expires_at' => $expires_at->value,
+            'recipient_email' => $user->email,
+            'issued_at' => $date_time
         );
 
         error_log('Data: '.print_r($data,true));
+        //error_log('api_url: '.$api->value);
 
         $ch = curl_init();
 
@@ -61,12 +71,13 @@ class group_observers {
             CURLOPT_HTTPHEADER     => array('Accept: application/json'),
             CURLOPT_CUSTOMREQUEST  => "POST",
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_URL            => $url,
+            CURLOPT_URL            => $api->value,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_USERPWD        => $username . ":" . $password,
+            CURLOPT_USERPWD        => $token->value . ":" . $password,
             CURLOPT_POSTFIELDS     => $data,
         );
 
+        error_log('curl_array: '. print_r($curlConfig,true));
         curl_setopt_array($ch, $curlConfig);
 
         $result = curl_exec($ch);
